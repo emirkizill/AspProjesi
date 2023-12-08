@@ -14,6 +14,8 @@ namespace AspProjesi.Models
         {
             optionsBuilder.UseNpgsql(Configuration.GetConnectionString("webapi"));
         }
-        public DbSet<userinfo> Userinfo { get; set; }   
+        public DbSet<userinfo> Userinfo { get; set; }
+        public DbSet<Doctors> Doctors { get; set; }
+
     }
 }

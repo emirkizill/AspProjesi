@@ -1,10 +1,15 @@
-﻿<h1>Hospital</h1>
-<form>
+﻿@model userinfo
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h1>@ViewBag.ErrorMessage</h1>
+<form asp-action="UserLogin" asp-controller="LoginAndRegister">
 	Kullanici Adi:
-	<input type="text" name="username" />
+	<input class="form-control" asp-for="username" />
+	<span asp-validation-for="username"></span>
 	Sifre:
-	<input type="password" name="password" />
-	<button type="submit" value="post">Giris Yap</button>
+	<input type="password" class="form-control" asp-for="password" />
+	<span asp-validation-for="password"></span>
+
+	<input type="submit" value="Giris Yap"></input>
 
 
 

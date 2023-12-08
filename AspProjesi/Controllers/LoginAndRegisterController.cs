@@ -38,11 +38,41 @@ namespace AspProjesi.Controllers
             return View("Register");
             
         }
-		public IActionResult UserLogin(userinfo info)
-        {
-		
-			
+		[HttpPost]
 
-			return View("Login"); }
+		public IActionResult UserLogin(userinfo info)
+
+		{
+			if (!ModelState.IsValid) 
+            {
+				userinfo kullanici=appDbContext.Userinfo.Where(usertest => usertest.username == info.username && usertest.password == info.password).FirstOrDefault();
+
+
+
+            if(kullanici==null)
+                {
+                    ViewBag.ErrorMessage = "Kullanici adi veya sifre hatalidir";
+
+                    return View("Login");
+
+                }
+            else
+                {
+
+                    return View(info);
+
+                }
+            
+            
+            }
+
+            else
+            {
+                return View("Login");
+            }
+
+            
+		}
+
 	}
 }
