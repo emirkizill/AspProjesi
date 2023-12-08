@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using System;
+using AspProjesi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("webapi");
+
+builder.Services.AddDbContext<ContextApp>(options => options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 

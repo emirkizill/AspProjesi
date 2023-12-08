@@ -1,0 +1,23 @@
+﻿@model userinfo
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h1>Hospital</h1>
+<form asp-controller="LoginAndRegister" asp-action="UserRegister">
+	Adiniz:
+
+	<input type="text" class="form-control" asp-for="name" />
+	<span class="validation" asp-validation-for="name"></span>
+	Soyadiniz:
+	<input type="text" class="form-control" asp-for="surname" />
+	<span class="validation" asp-validation-for="surname"></span>
+	Mail adresiniz:
+	<input type="email" class="form-control" asp-for="email" />
+	<span class="validation" asp-validation-for="email"></span>
+	Kullanici adi:
+	<input type="text" class="form-control" asp-for="username" />
+	<span class="validation" asp-validation-for="username"></span>
+	Sifre:
+	<input type="password" class="form-control" asp-for="password" />
+	<span class="validation" asp-validation-for="password"></span>
+	<input type="submit" value="Kayit Ol" />
+
+</form>

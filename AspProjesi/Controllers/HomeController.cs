@@ -13,12 +13,14 @@ namespace AspProjesi.Controllers
             _logger = logger;
         }
 
+        
+
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+      
+        public IActionResult AdminLogin()
         {
             return View();
         }
@@ -29,4 +31,5 @@ namespace AspProjesi.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+    
 }
