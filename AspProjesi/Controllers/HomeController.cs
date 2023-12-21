@@ -1,10 +1,14 @@
 ﻿using AspProjesi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Data.Entity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AspProjesi.Controllers
 {
-    public class HomeController : Controller
+	[Authorize]
+
+	public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 

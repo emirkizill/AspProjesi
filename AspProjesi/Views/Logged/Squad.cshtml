@@ -1,66 +1,53 @@
 ﻿@{
     Layout = "_LoggedInLayout";
 }
+@model List<Doctors>
 <html>
     <head>
     <style>
         table {
-            border: 3px solid #CF000F;
-            width: 500px;
-            height: 250px;
-            text-align: center;
-            font-family: "Comic Sans MS", "Comic Sans", cursive;
-            background-color: #F1654C;
-            color: #fff;
-        }
-
-            table td {
-                border: 5px solid #F29B34;
-            }
-
-        #tablo-baslik {
-            font-weight: 700;
-        }
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
     </style>
     </head>
     <body>
-<table>
-    <tr id="tablo-baslik">
-        <td>Sıra</td>
-        <td>Ad</td>
-        <td>Soyad</td>
-        <td>Numara</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Ahmet</td>
-        <td>Cansever</td>
-        <td>15</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Hayri</td>
-        <td>Koçmarlar</td>
-        <td>48</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>Hüseyin</td>
-        <td>Öztürk</td>
-        <td>52</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>Ufuk</td>
-        <td>İlkiz</td>
-        <td>65</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>Recep</td>
-        <td>Ortaköylü</td>
-        <td>71</td>
-    </tr>
-</table>
+        <h1>Ekibimiz</h1>
+        <br />
+    <div class="doctors">
+        <table>
+            <thead>
+                <tr>
+                    <th>Brans</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var doctor in Model)
+                {
+                    <tr>
+                        <td>@doctor.Branch</td>
+                        <td>@doctor.Name</td>
+                        <td>@doctor.Surname</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

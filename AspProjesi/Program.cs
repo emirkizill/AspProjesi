@@ -1,13 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using AspProjesi.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("webapi");
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.Cookie.Name = "NetCoreMvc.Auth";
+    options.LoginPath = "/LoginAndRegister/Login";
+    options.AccessDeniedPath = "/LoginAndRegister/Login";
 
+
+
+});
 builder.Services.AddDbContext<ContextApp>(options => options.UseNpgsql(connectionString));
 
 var app = builder.Build();
@@ -24,7 +33,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

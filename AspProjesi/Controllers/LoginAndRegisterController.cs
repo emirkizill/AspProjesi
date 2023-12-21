@@ -1,10 +1,12 @@
 ﻿using AspProjesi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Drawing.Printing;
 
 namespace AspProjesi.Controllers
 {
+    
     public class LoginAndRegisterController : Controller
     {
         private readonly ContextApp appDbContext;
@@ -73,6 +75,12 @@ namespace AspProjesi.Controllers
 
             
 		}
+        public IActionResult LoggedHome(userinfo info)
+        {
+
+            return View(info) ;
+
+        }
 
 	}
 }
