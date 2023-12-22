@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AspProjesi.Controllers
 {
-	[Authorize]
+	
 
 	public class HomeController : Controller
     {

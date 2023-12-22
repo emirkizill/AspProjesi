@@ -1,7 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspProjesi.Models
 {
+    public enum Role
+    {
+        User,
+        Admin
+    }
     public class userinfo
     {
 
@@ -19,6 +25,9 @@ namespace AspProjesi.Models
         public string username { get; set; }
         [Required(ErrorMessage = "Lutfen gecerli sifre giriniz")]
         public string password { get; set; }
+
+        private Role role { get; set; }
+     
 
     }
 }

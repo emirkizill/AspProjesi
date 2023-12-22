@@ -11,8 +11,8 @@ var connectionString = builder.Configuration.GetConnectionString("webapi");
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
     options.Cookie.Name = "NetCoreMvc.Auth";
-    options.LoginPath = "/LoginAndRegister/Login";
-    options.AccessDeniedPath = "/LoginAndRegister/Login";
+    options.LoginPath = "/Home/Index";
+    options.AccessDeniedPath = "/Home/Index";
 
 
 
