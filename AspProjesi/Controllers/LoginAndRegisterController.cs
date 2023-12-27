@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Drawing.Printing;
 using System.Security.Claims;
+using Microsoft.Win32;
+using System.Data.Entity;
+using Microsoft.AspNetCore.Antiforgery;
 
 namespace AspProjesi.Controllers
 {
@@ -36,8 +39,18 @@ namespace AspProjesi.Controllers
             if (ModelState.IsValid)
 
             {
+                userinfo userinfo = new userinfo();
+                userinfo.name = info.name;
+                userinfo.surname = info.surname;
+                userinfo.email = info.email;
+                userinfo.password =info.password;
+                userinfo.Role = Role.User;
+
+  
                 appDbContext.Userinfo.Add(info);
                 appDbContext.SaveChanges();
+                ViewBag.Message = "Kayıt işlemi başarılı.Lütfen giriş yapınız.";
+                return View("Login");
 
             }
             return View("Register");
@@ -66,16 +79,22 @@ namespace AspProjesi.Controllers
                 {
 
                     var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name,info.name),
-                        new Claim(ClaimTypes.Role, "User")
-
-                    };
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+{
+                     new Claim(ClaimTypes.Name, info.username),
+                     new Claim(ClaimTypes.Role, info.Role.ToString())
+};
+                    var appIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var AuthProperties = new AuthenticationProperties();
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), AuthProperties);
-                    return RedirectToAction("Index", "Home");
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(appIdentity), AuthProperties);
 
+                    if (info.email == "a@gmail.com" && info.Role == Role.Admin)
+                    {
+                        return RedirectToAction("LoginAndRegister", "AdminPanel", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("LoginAndRegister", "UserLogin", new { area = "User" });
+                    }
                 }
 
 
@@ -95,6 +114,12 @@ namespace AspProjesi.Controllers
 
             return View(info);
 
+        }
+        public IActionResult AdminPanel() 
+        {
+
+            return View();
+        
         }
 
     }

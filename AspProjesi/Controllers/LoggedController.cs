@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspProjesi.Controllers
 {
-    [Authorize(Roles ="User")]
+    [Authorize]
     public class LoggedController : Controller
 	{
 

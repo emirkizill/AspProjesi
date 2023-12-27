@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
+
 namespace AspProjesi.Models
 {
     public class ContextApp:DbContext
